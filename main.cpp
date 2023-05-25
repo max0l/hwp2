@@ -14,6 +14,7 @@
 
 int main()
 {
+     //Für jede messung wird der Dateiname für output angepasst und das Programm neu compiliert
 	std::ofstream output("test.txt");
 	B15F& drv = B15F::getInstance();
 	std::cout<< drv.analogRead(AE0) << "\n\n\n\n\n";
@@ -27,8 +28,10 @@ int main()
     //std::cout<<std::hex<<drv.readDipSwitch()<<std::endl;
 		//Diode Spannung
     	if(drv.readDipSwitch() == 1) {
-
-			//Sets Voltage
+            //6.1
+            //6.2
+            //7.1
+            //Sets Voltage
 
 			drv.analogWrite0(u_write*1023/5);
 			std::cout<<"Sets Voltage to: " <<u_write<<std::endl;
@@ -45,6 +48,7 @@ int main()
 			drv.delay_ms(200);
 	} else if(drv.readDipSwitch() == 2)
 	//Diode Strom
+	//
 		{
 			drv.analogWrite0(u_write*1023/5);
 			std::cout<<"Sets Voltage to: " <<u_write<<std::endl;
@@ -63,6 +67,9 @@ int main()
 		}
 		else if(drv.readDipSwitch() == 3)
 		//Diode Strom über spannung gemessen
+		//7.2
+		//7.3
+		//7.5
 			{
 
 				drv.analogWrite0(u_write*1023/5);
@@ -121,8 +128,7 @@ int main()
 					std::cout<< "I drain: " <<i_drain << "\t" << "I Gate: " << i_gate <<std::endl;
 
 					std::cout << "\n\n\n";
-					//output << u_write << "\t" << u_read*5/1023<< std::endl;
-					//output << u_write << "\t" << u_ae0 << "\t" << u_ae1 << "\t" << u_ae2 << "\t" << u_ae3 << std::endl;
+
 					fs << i_drain << "\t" << u_sd <<std::endl;
 					//drv.delay_ms(50);
 				}
@@ -162,16 +168,6 @@ int main()
 					double i_drain = (u_ae0-u_ae1)/resistor1;
 					double i_gate = u_gs/resistor2;
 
-
-
-					//std::cout <<"u_ae0: " << drv.analogRead(AE0) << "\t u_ae1: " << drv.analogRead(AE1) << "\t u_ae2: " << drv.analogRead(AE2) << "\t u_ae3: " << drv.analogRead(AE3) << std::endl;
-					//std::cout << "V: " << voltage_step << "\t u_ae0: " << u_ae0 << "\t u_ae1: " << u_ae1 << "\t u_ae2: " << u_ae2 << "\t u_ae3: " << u_ae3 << std::endl;
-
-					//std::cout<< "I drain: " <<i_drain << "\t" << "I Gate: " << i_gate <<std::endl;
-
-					//std::cout << "\n\n\n";
-					//output << u_write << "\t" << u_read*5/1023<< std::endl;
-					//output << u_write << "\t" << u_ae0 << "\t" << u_ae1 << "\t" << u_ae2 << "\t" << u_ae3 << std::endl;
 					fs << i_drain << "\t" << u_gs <<std::endl;
 					//drv.delay_ms(50);
 				}
@@ -212,16 +208,6 @@ int main()
 					double i_drain = (u_ae0-u_ae1)/resistor1;
 					double i_gate = (u_ae2-u_ae3)/resistor2;
 
-
-
-					//std::cout <<"u_ae0: " << drv.analogRead(AE0) << "\t u_ae1: " << drv.analogRead(AE1) << "\t u_ae2: " << drv.analogRead(AE2) << "\t u_ae3: " << drv.analogRead(AE3) << std::endl;
-					//std::cout << "V: " << voltage_step << "\t u_ae0: " << u_ae0 << "\t u_ae1: " << u_ae1 << "\t u_ae2: " << u_ae2 << "\t u_ae3: " << u_ae3 << std::endl;
-
-					//std::cout<< "I drain: " <<i_drain << "\t" << "I Gate: " << i_gate <<std::endl;
-
-					//std::cout << "\n\n\n";
-					//output << u_write << "\t" << u_read*5/1023<< std::endl;
-					//output << u_write << "\t" << u_ae0 << "\t" << u_ae1 << "\t" << u_ae2 << "\t" << u_ae3 << std::endl;
 					fs << i_drain << "\t" << i_gate <<std::endl;
 					//drv.delay_ms(50);
 				}
@@ -261,18 +247,8 @@ int main()
 					double u_gs = u_ae2;
 					double u_sd = u_ae1;
 					double i_drain = (u_ae0-u_ae1)/resistor1;
-					double i_gate = (u_ae3-u_ae2)/resistor2; //3-2/R2
+					double i_gate = (u_ae3-u_ae2)/resistor2;
 
-
-
-					//std::cout <<"u_ae0: " << drv.analogRead(AE0) << "\t u_ae1: " << drv.analogRead(AE1) << "\t u_ae2: " << drv.analogRead(AE2) << "\t u_ae3: " << drv.analogRead(AE3) << std::endl;
-					//std::cout << "V: " << voltage_step << "\t u_ae0: " << u_ae0 << "\t u_ae1: " << u_ae1 << "\t u_ae2: " << u_ae2 << "\t u_ae3: " << u_ae3 << std::endl;
-
-					//std::cout<< "I drain: " <<i_drain << "\t" << "I Gate: " << i_gate <<std::endl;
-
-					//std::cout << "\n\n\n";
-					//output << u_write << "\t" << u_read*5/1023<< std::endl;
-					//output << u_write << "\t" << u_ae0 << "\t" << u_ae1 << "\t" << u_ae2 << "\t" << u_ae3 << std::endl;
 					fs << i_drain << "\t" << voltage_step <<std::endl;
 
 					//drv.delay_ms(50);
